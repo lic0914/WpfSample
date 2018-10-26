@@ -1,0 +1,31 @@
+﻿<Window x:Class="BindingTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BindingTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" FontSize="16">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Left" Height="217" Margin="0,10,0,0" VerticalAlignment="Top" Width="782" Grid.RowSpan="2">
+            <TextBox Name="txt" HorizontalAlignment="Left" Height="66" Margin="10,0,0,0" TextWrapping="Wrap" Text="TextBox" Width="762"/>
+            <Button Click="btn_Click" Content="Add" Name="btn" HorizontalAlignment="Left" Height="67" Margin="10,0,0,0" Width="762"/>
+        </StackPanel>
+        <!-- 控件作为binding 源 与 binding 标记扩展 -->
+        <StackPanel Grid.Row="1">
+            <!-- {Binding Path=Value,ElementName=slider} 标记扩展语法
+             等价
+             this.txtbox1.SetBinding(TextBox.TextProperty, new Binding("Value") { ElementName = "slider" }); 
+            由于 Binding 默认是Path所以可以=> {Binding Value,ElementName=slider}
+            因为后台可以直接访问控件对象,所以不会使用Binding的ElementName 属性 而是直接把对象赋值给Binding的Source属性给
+            -->
+
+            <TextBox x:Name="txtbox1" Text="{Binding Path=Value,ElementName=slider}" BorderBrush="Black" Margin="5" Height="62"/>
+            <Slider FontSize="16" x:Name="slider" Maximum="100" Minimum="0" Margin="5" Height="47"></Slider>
+        </StackPanel>
+    </Grid>
+</Window>
