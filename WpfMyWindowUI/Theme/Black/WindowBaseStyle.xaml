@@ -43,7 +43,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <!--关闭按钮样式-->
     <Style x:Key="closeBtnStyle" TargetType="Button">
         <Setter Property="Margin" Value="2,0,2,0"></Setter>
@@ -100,7 +100,7 @@
         <Setter Property="Opacity" Value=".75"></Setter>
         <Setter Property="Foreground" Value="White"></Setter>
     </Style>
-    
+
     <!--窗口圆角-->
     <CornerRadius x:Key="winCorner">
         <CornerRadius.BottomLeft>5</CornerRadius.BottomLeft>
@@ -124,11 +124,11 @@
         <CornerRadius.TopLeft>0</CornerRadius.TopLeft>
         <CornerRadius.TopRight>0</CornerRadius.TopRight>
     </CornerRadius>
-    
+
     <!--基窗口模板-->
     <ControlTemplate x:Key="BaseWindowControlTemplate" TargetType="{x:Type Window}">
         <Grid Width="{Binding ElementName=w, Path=Width}" Height="{Binding ElementName=w, Path=Height}">
-            <Border BorderThickness="5" CornerRadius="6" BorderBrush="#000000" Opacity=".08"></Border>
+            <Border BorderThickness="5" CornerRadius="6" BorderBrush="Red" Opacity=".08"></Border>
             <Border x:Name="borderBg" Margin="5" Background="#000000" BorderBrush="#ffffff" Opacity=".8" BorderThickness="2" CornerRadius="{StaticResource winCorner}" Style="{StaticResource winStyle}">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -142,7 +142,7 @@
                     <Border Grid.Row="3" CornerRadius="{StaticResource winStatusCorner}"></Border>
                 </Grid>
             </Border>
-          
+
             <Grid Margin="7">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"></RowDefinition>
@@ -151,7 +151,7 @@
                     <RowDefinition Height="30"></RowDefinition>
                 </Grid.RowDefinitions>
                 <!--标题栏框-->
-                
+
                 <Border x:Name="borderTitle" Grid.Row="0" CornerRadius="{StaticResource winTitleCorner}" Style="{StaticResource titleStyle}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                     <Grid Background="Transparent">
                         <TextBlock Text="{Binding ElementName=w, Path=Title}" Foreground="White" Opacity=".75" HorizontalAlignment="Left"></TextBlock>
@@ -159,7 +159,7 @@
                         Orientation="Horizontal">
                             <!--关闭按钮-->
                             <Button x:Name="btnMin" Style="{StaticResource minBtnStyle}"></Button>
-                            <Button x:Name="btnClose" Style="{StaticResource closeBtnStyle}"></Button> 
+                            <Button x:Name="btnClose" Style="{StaticResource closeBtnStyle}"></Button>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -167,7 +167,7 @@
                 <Grid x:Name="gridContent" Grid.Row="1">
                     <ContentPresenter />
                 </Grid>
-                
+
                 <Border Grid.Row="3" CornerRadius="{StaticResource winStatusCorner}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
                         <Button x:Name="btnYes" Style="{StaticResource btnStyle}"></Button>

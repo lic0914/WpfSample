@@ -14,15 +14,31 @@ namespace WpfMyWindowUI
 
         public WindowBase()
         {
-            
-            string themeName = ConfigManage.CurrentTheme;//样式所在的文件夹
+            InitializeTheme();
+            InitializeStyle();
 
-            App.Current.Resources.MergedDictionaries.Add(Application.LoadComponent(new Uri(string.Format("../Theme/{0}/WindowBaseStyle.xaml", themeName), UriKind.Relative)) as ResourceDictionary);
             this.Loaded += delegate
             {
                 InitializeEvent();
             };
         }
+
+        protected virtual void MinWin()
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        public Button YesButton
+        {
+            get;
+            set;
+        }
+        public Button NoButton
+        {
+            get;
+            set;
+        }
+
         private void InitializeEvent()
         {
             ControlTemplate baseWindowTemplate = (ControlTemplate)App.Current.Resources["BaseWindowControlTemplate"];
@@ -30,12 +46,12 @@ namespace WpfMyWindowUI
             Border borderTitle = (Border)baseWindowTemplate.FindName("borderTitle", this);
             Button closeBtn = (Button)baseWindowTemplate.FindName("btnClose", this);
             Button minBtn = (Button)baseWindowTemplate.FindName("btnMin", this);
-            //YesButton = (Button)baseWindowTemplate.FindName("btnYes", this);
-            //NoButton = (Button)baseWindowTemplate.FindName("btnNo", this);
+            YesButton = (Button)baseWindowTemplate.FindName("btnYes", this);
+            NoButton = (Button)baseWindowTemplate.FindName("btnNo", this);
 
             minBtn.Click += delegate
             {
-                this.WindowState = WindowState.Minimized;
+                MinWin();
             };
 
             closeBtn.Click += delegate
@@ -50,6 +66,48 @@ namespace WpfMyWindowUI
                     this.DragMove();
                 }
             };
+
+
+        }
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnClosing(e);
+        }
+
+        public Canvas GridContent
+        {
+            get;
+            set;
+        }
+
+
+        private void InitializeStyle()
+        {
+            this.Style = (Style)App.Current.Resources["BaseWindowStyle"];
+        }
+
+        private void InitializeTheme()
+        {
+            string themeName = ConfigManage.CurrentTheme;
+            App.Current.Resources.MergedDictionaries.Add(Application.LoadComponent(new Uri(string.Format("../Theme/{0}/WindowBaseStyle.xaml", themeName), UriKind.Relative)) as ResourceDictionary);
+        }
+
+        private bool _allowSizeToContent = false;
+        /// <summary>
+        /// 自定义属性，用于标记该窗体是否允许按内容适应，设此属性是为了解决最大化按钮当SizeToContent属性为WidthAndHeight时不能最大化，从而最大、最小化必须变更SizeToContent的值的问题
+        /// </summary>
+        public bool AllowSizeToContent
+        {
+            get
+            {
+                return _allowSizeToContent;
+            }
+            set
+            {
+                this.SizeToContent = (value ? SizeToContent.WidthAndHeight : SizeToContent.Manual);
+                _allowSizeToContent = value;
+            }
         }
     }
 }

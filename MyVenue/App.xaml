@@ -1,9 +1,9 @@
-﻿<Application x:Class="WpfMyWindowUI.App"
+﻿<Application x:Class="MyVenue.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WpfMyWindowUI"
+             xmlns:local="clr-namespace:MyVenue"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
+         
     </Application.Resources>
 </Application>

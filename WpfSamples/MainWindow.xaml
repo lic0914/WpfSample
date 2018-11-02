@@ -34,5 +34,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <local:UserControl1 HorizontalAlignment="Left" Margin="38,46,0,0" x:Name="userControl11" VerticalAlignment="Top" Height="183" Width="406" />
     </StackPanel>
 </Window>

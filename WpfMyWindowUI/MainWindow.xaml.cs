@@ -21,6 +21,21 @@ namespace WpfMyWindowUI
         public MainWindow()
         {
             InitializeComponent();
+            this.Loaded += (sender, e) =>
+            {
+                this.YesButton.Content = "确 定";
+                this.YesButton.Width = 60;
+                this.NoButton.Content = "取 消";
+                this.NoButton.Width = 60;
+                this.YesButton.Click += (ss, ee) =>
+                {
+                    MessageBox.Show("确定");
+                };
+                this.NoButton.Click += (ss, ee) =>
+                {
+                    MessageBox.Show("取消");
+                };
+            };
         }
        
     }
