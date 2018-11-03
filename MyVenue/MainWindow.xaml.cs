@@ -18,27 +18,12 @@ namespace MyVenue
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : WindowBase
     {
-        public int TitleWidth { get; set; } = 250;
         public MainWindow()
         {
             InitializeComponent();
 
-            this.Loaded += delegate
-            {
-               
-               // Border borderTitle = this.Template.FindName("borderTitle", this) as Border;
-
-
-                borderTitle.MouseMove += delegate (object sender, MouseEventArgs e)
-                {
-                    if (e.LeftButton == MouseButtonState.Pressed)
-                    {
-                        this.DragMove();
-                    }
-                };
-            };
         }
     }
 }
